@@ -1,19 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Fonts\iconfont.ttf" />
-    <None Remove="Images\Logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Fonts\iconfont.ttf" />
-    <Resource Include="Images\Logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Fonts\iconfont.ttf" />
+		<None Remove="Images\108x108.ico" />
+		<None Remove="Images\icon.ico" />
+		<None Remove="Images\Logo.png" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+	<ItemGroup>
+		<Resource Include="Fonts\iconfont.ttf" />
+		<Resource Include="Images\icon.ico" />
+		<Resource Include="Images\Logo.png" />
+	</ItemGroup>
 
 </Project>
