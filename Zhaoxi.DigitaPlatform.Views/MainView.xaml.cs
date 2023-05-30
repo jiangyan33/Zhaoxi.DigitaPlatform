@@ -23,5 +23,10 @@ namespace Zhaoxi.DigitaPlatform.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

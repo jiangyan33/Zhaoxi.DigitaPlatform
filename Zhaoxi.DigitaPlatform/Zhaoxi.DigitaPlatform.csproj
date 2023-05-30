@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Zhaoxi.DigitaPlatform.Assets\Zhaoxi.DigitaPlatform.Assets.csproj" />
+		<ProjectReference Include="..\Zhaoxi.DigitaPlatform.DataAccess\Zhaoxi.DigitaPlatform.DataAccess.csproj" />
 		<ProjectReference Include="..\Zhaoxi.DigitaPlatform.ViewModels\Zhaoxi.DigitaPlatform.ViewModels.csproj" />
 		<ProjectReference Include="..\Zhaoxi.DigitaPlatform.Views\Zhaoxi.DigitaPlatform.Views.csproj" />
 	</ItemGroup>

@@ -215,7 +215,7 @@
                 Grid.Row="2"
                 Margin="0,10,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                VerticalAlignment="top"
                 FontFamily="YouYuan"
                 FontSize="17"
                 SnapsToDevicePixels="True"
@@ -228,7 +228,6 @@
                         <GradientStop Offset="1" Color="#16a1ff" />
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
-
                 <TextBlock.Effect>
                     <DropShadowEffect
                         BlurRadius="10"

@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Unity;
 using System.Windows;
+using Zhaoxi.DigitaPlatform.DataAccess;
 using Zhaoxi.DigitaPlatform.ViewModels;
 using Zhaoxi.DigitaPlatform.Views;
 
@@ -35,6 +36,10 @@ namespace Zhaoxi.DigitaPlatform
             ViewModelLocationProvider.Register<LoginView, LoginViewModel>();
 
             ViewModelLocationProvider.Register<MainView, MainViewModel>();
+
+
+            // 实例化单例服务
+            containerRegistry.RegisterSingleton<LocalDataAccess>();
         }
     }
 }

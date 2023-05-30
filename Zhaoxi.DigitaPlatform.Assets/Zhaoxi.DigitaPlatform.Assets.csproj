@@ -9,7 +9,6 @@
 	<ItemGroup>
 		<None Remove="Fonts\iconfont.ttf" />
 		<None Remove="Images\108x108.ico" />
-		<None Remove="Images\icon.ico" />
 		<None Remove="Images\Logo.png" />
 	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -17,7 +16,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Resource Include="Fonts\iconfont.ttf" />
-		<Resource Include="Images\icon.ico" />
 		<Resource Include="Images\Logo.png" />
 	</ItemGroup>
 

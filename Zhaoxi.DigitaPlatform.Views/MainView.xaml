@@ -7,11 +7,318 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vm="clr-namespace:Zhaoxi.DigitaPlatform.ViewModels;assembly=Zhaoxi.DigitaPlatform.ViewModels"
-    Title="MainView"
-    Width="800"
-    Height="450"
+    Title="朝夕教育智能化通信平台"
+    Width="1400"
+    Height="800"
     d:DataContext="{d:DesignInstance {x:Type vm:MainViewModel}}"
     prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="#f1f5fd"
+    FontFamily="Microsoft YaHei"
+    FontSize="12"
+    FontWeight="ExtraLight"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid />
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Styles/ButtonStyles.xaml" />
+
+                <ResourceDictionary>
+                    <Style x:Key="MenuButtonStyle" TargetType="RadioButton">
+                        <Setter Property="Margin" Value="5,8" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border
+                                        x:Name="root"
+                                        Background="Transparent"
+                                        BorderThickness="1"
+                                        CornerRadius="8">
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition Height="24" />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock
+                                                Name="icon"
+                                                Margin="0,8,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontFamily="{DynamicResource Iconfont}"
+                                                FontSize="28"
+                                                Foreground="#66000000"
+                                                Opacity="0.7"
+                                                Text="{Binding MenuIcon}" />
+
+                                            <TextBlock
+                                                Name="header"
+                                                Grid.Row="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="11"
+                                                Foreground="#99000000"
+                                                Text="{Binding MenuHeader}" />
+                                        </Grid>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="root" Property="Background" Value="#2216a1ff" />
+                                            <Setter TargetName="root" Property="BorderBrush" Value="#4416a1ff" />
+                                            <Setter TargetName="icon" Property="Foreground" Value="Orange" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--  border增加了一个背景色的渐变和一个下边框的渐变  -->
+        <Border Grid.ColumnSpan="2" BorderThickness="0,0,0,1">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0" Color="#c2e0fa" />
+                    <GradientStop Offset="0.6" Color="Transparent" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                    <GradientStop Offset="0" Color="White" />
+                    <GradientStop Offset="0.6" Color="Transparent" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <!--  内容  -->
+        <Border
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Height="45"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            BorderThickness="0,0,1,1"
+            CornerRadius="0,0,60,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Offset="0" Color="#c2e0fa" />
+                    <GradientStop Offset="1" Color="White" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Offset="0" Color="Transparent" />
+                    <GradientStop Offset="0.3" Color="#3316a1ff" />
+                    <GradientStop Offset="0.5" Color="#16a1ff" />
+                    <GradientStop Offset="0.9" Color="#16a1ff" />
+                    <GradientStop Offset="1" Color="Transparent" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <StackPanel Orientation="Horizontal">
+
+                <Image
+                    Margin="10"
+                    VerticalAlignment="Top"
+                    Source="pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Images/logo.png">
+
+                    <Image.Effect>
+                        <DropShadowEffect
+                            BlurRadius="10"
+                            Direction="0"
+                            Opacity="0.2"
+                            ShadowDepth="0"
+                            Color="Gray" />
+                    </Image.Effect>
+                </Image>
+
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="5,0,40,0"
+                    VerticalAlignment="Center"
+                    FontFamily="YouYuan"
+                    FontSize="16"
+                    SnapsToDevicePixels="True"
+                    Text="朝夕智控 | 空压站数字化监控系统">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="#16a1ff" />
+                            <GradientStop Offset="0.75" Color="Goldenrod" />
+                            <GradientStop Offset="1" Color="#16a1ff" />
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="1"
+                            Direction="0"
+                            Opacity="0.2"
+                            ShadowDepth="0"
+                            Color="Gray" />
+                    </TextBlock.Effect>
+
+                    <!--  x轴缩放1.2  -->
+                    <TextBlock.LayoutTransform>
+                        <ScaleTransform ScaleX="1.2" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="390" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="180" />
+            </Grid.ColumnDefinitions>
+
+            <Path
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Data="M0 0,4 4 0 8 M6 0 10 4 6 8 M12 0 16 4 12 8 M16 4"
+                Stroke="#3316a1ff" />
+
+            <Border
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                BorderBrush="#3316a1ff"
+                BorderThickness="0,0,0,1" />
+
+            <Line
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                RenderTransformOrigin="0.5,0.5"
+                Stroke="#3316a1ff"
+                X1="0"
+                X2="0"
+                Y1="0"
+                Y2="20">
+                <Line.RenderTransform>
+                    <RotateTransform Angle="35" />
+                </Line.RenderTransform>
+            </Line>
+        </Grid>
+
+        <StackPanel
+            Grid.Column="1"
+            Margin="0,5,5,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Orientation="Horizontal"
+            WindowChrome.IsHitTestVisibleInChrome="True">
+            <Button
+                Width="40"
+                Height="30"
+                Margin="20,0,0,0"
+                Content="&#xe7e6;"
+                FontFamily="{DynamicResource Iconfont}"
+                Foreground="#555"
+                Style="{StaticResource WindowControlButtonStyle}" />
+            <Button
+                Width="40"
+                Height="30"
+                Content="&#xe694;"
+                FontFamily="{DynamicResource Iconfont}"
+                Foreground="#555"
+                Style="{StaticResource WindowControlButtonStyle}" />
+            <Button
+                Width="40"
+                Height="30"
+                Click="Button_Click"
+                Content="&#xe653;"
+                FontFamily="{DynamicResource Iconfont}"
+                Foreground="#555"
+                Style="{StaticResource WindowControlButtonStyle}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.Background>
+                    <VisualBrush
+                        TileMode="Tile"
+                        ViewboxUnits="Absolute"
+                        Viewport="0,0,100,60">
+                        <VisualBrush.Visual>
+                            <Path
+                                Data="M18 60,0 30,18 0 50,0 69,30 50,60M69,30 100,30"
+                                Stroke="#11FF6E00"
+                                StrokeThickness="1" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Grid.Background>
+
+                <Grid.OpacityMask>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="0.3" Color="Black" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </RadialGradientBrush>
+                </Grid.OpacityMask>
+            </Grid>
+
+            <ContentControl Margin="0,5" Content="{Binding ViewContent}" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border BorderThickness="0,0,1,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0.1" Color="Transparent" />
+                        <GradientStop Offset="0.2" Color="#1116a1ff" />
+                        <GradientStop Offset="0.5" Color="#1116a1ff" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Border.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="Transparent" />
+                        <GradientStop Offset="0.3" Color="Gold" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+
+                <!--  菜单  -->
+                <ItemsControl
+                    Margin="0,0,0,100"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding Menus}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton
+                                Command="{Binding DataContext.SwitchPageCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}"
+                                GroupName="menu"
+                                IsChecked="{Binding IsSelected}"
+                                Style="{StaticResource MenuButtonStyle}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </Grid>
+    </Grid>
 </Window>
