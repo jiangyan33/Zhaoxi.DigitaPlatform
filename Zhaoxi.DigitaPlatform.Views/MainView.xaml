@@ -232,16 +232,20 @@
             Orientation="Horizontal"
             WindowChrome.IsHitTestVisibleInChrome="True">
             <Button
+                Name="miniBtn"
                 Width="40"
                 Height="30"
                 Margin="20,0,0,0"
+                Click="miniBtn_Click"
                 Content="&#xe7e6;"
                 FontFamily="{DynamicResource Iconfont}"
                 Foreground="#555"
                 Style="{StaticResource WindowControlButtonStyle}" />
             <Button
+                Name="btnMax"
                 Width="40"
                 Height="30"
+                Click="btnMax_Click"
                 Content="&#xe694;"
                 FontFamily="{DynamicResource Iconfont}"
                 Foreground="#555"

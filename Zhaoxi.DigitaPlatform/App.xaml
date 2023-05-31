@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <FontFamily x:Key="Iconfont">pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Fonts/#iconfont</FontFamily>
+                    <FontFamily x:Key="DigitalDisplay">pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Fonts/#Digital Display</FontFamily>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
