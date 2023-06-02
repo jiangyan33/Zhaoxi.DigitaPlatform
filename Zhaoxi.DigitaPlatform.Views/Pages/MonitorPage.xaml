@@ -16,5 +16,311 @@
             <ColumnDefinition Width="250" />
         </Grid.ColumnDefinitions>
 
+
+
+        <!--  第一列  -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--  最上方的背景渐变  -->
+            <Border CornerRadius="6">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#1116a1ff" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Grid Margin="0,10" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="2.2*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Border VerticalAlignment="Center" BorderThickness="0,0,0,1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="Transparent" />
+                            <GradientStop Offset="0.5" Color="#AA16a1ff" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
+                <!--  一个border有左右两条边  -->
+                <Border
+                    Grid.Column="1"
+                    Height="4"
+                    Margin="2,0"
+                    VerticalAlignment="Center"
+                    BorderBrush="#6616a1ff"
+                    BorderThickness="2,0" />
+
+                <Border
+                    Grid.Column="1"
+                    Height="8"
+                    Margin="6,0"
+                    VerticalAlignment="Center"
+                    BorderBrush="#6616a1ff"
+                    BorderThickness="2,0" />
+
+                <Border
+                    Grid.Column="1"
+                    Height="12"
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    BorderBrush="#6616a1ff"
+                    BorderThickness="2,0" />
+
+                <Border
+                    Grid.Column="1"
+                    Height="20"
+                    Margin="14,0"
+                    VerticalAlignment="Center"
+                    BorderThickness="0,0,0,1"
+                    CornerRadius="3">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#5516a1ff" />
+                            <GradientStop Offset="0.4" Color="Transparent" />
+                            <GradientStop Offset="0.6" Color="Transparent" />
+                            <GradientStop Offset="1" Color="#5516a1ff" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <TextBlock
+                        Name="txt_date"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontWeight="Normal"
+                        Foreground="#99444444"
+                        Text="2022年11月26日" />
+                </Border>
+
+                <Border
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    BorderThickness="0,0,0,1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                            <GradientStop Offset="0.5" Color="#AA16a1ff" />
+                            <GradientStop Offset="0" Color="Transparent" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
+            </Grid>
+
+            <TextBlock
+                Margin="0,0,0,15"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Foreground="#555">
+
+                <Run
+                    Name="txt_time"
+                    FontFamily="{StaticResource DigitalDisplay}"
+                    FontSize="30"
+                    Text="20:00:00" />
+                <Run Text="   " />
+                <Run
+                    Name="txt_week"
+                    FontSize="13"
+                    Text="星期六" />
+            </TextBlock>
+
+            <!--  第二块  -->
+
+            <UniformGrid Grid.Row="1" Columns="1">
+                <GroupBox Header="环境监测">
+                    <UniformGrid Rows="1">
+                        <Border
+                            Width="60"
+                            Height="90"
+                            CornerRadius="5">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0" Color="#885db5cc" />
+                                    <GradientStop Offset="1" Color="Transparent" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Grid ClipToBounds="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+
+                                <!--  这个图标当做背景来使用了  -->
+                                <TextBlock
+                                    Margin="-20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="{DynamicResource Iconfont}"
+                                    FontSize="50"
+                                    Foreground="#11FFFFFF"
+                                    Text="&#xe660;" />
+
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock
+                                        Margin="0,5"
+                                        FontSize="17"
+                                        FontWeight="Bold"
+                                        Foreground="#5db5cc"
+                                        Text="21.5" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="11"
+                                        Foreground="#885db5cc"
+                                        Text="℃" />
+                                </StackPanel>
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="10"
+                                    Foreground="#888"
+                                    Text="车间温度" />
+
+                            </Grid>
+                        </Border>
+
+                        <Border
+                            Width="60"
+                            Height="90"
+                            CornerRadius="5">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0" Color="#884c67e6" />
+                                    <GradientStop Offset="1" Color="Transparent" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid ClipToBounds="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Margin="-20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="{StaticResource Iconfont}"
+                                    FontSize="50"
+                                    Foreground="#22FFFFFF"
+                                    Text="&#xe60a;" />
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock
+                                        Margin="0,5"
+                                        FontSize="17"
+                                        FontWeight="Bold"
+                                        Foreground="#4c67e6"
+                                        Text="60" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="11"
+                                        Foreground="#884c67e6"
+                                        Text="%" />
+                                </StackPanel>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="10"
+                                    Foreground="#888"
+                                    Text="车间湿度" />
+                            </Grid>
+                        </Border>
+                        <Border
+                            Width="60"
+                            Height="90"
+                            CornerRadius="5">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0" Color="#885db5cc" />
+                                    <GradientStop Offset="1" Color="Transparent" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid ClipToBounds="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Margin="-20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="{StaticResource Iconfont}"
+                                    FontSize="50"
+                                    Foreground="#22FFFFFF"
+                                    Text="&#xe601;" />
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock
+                                        Margin="0,5"
+                                        FontSize="17"
+                                        FontWeight="Bold"
+                                        Foreground="#5db5cc"
+                                        Text="21.5" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="#885db5cc"
+                                        Text="μg/m³" />
+                                </StackPanel>
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="10"
+                                    Foreground="#888"
+                                    Text="PM2.5" />
+                            </Grid>
+                        </Border>
+                    </UniformGrid>
+                </GroupBox>
+
+                <!--  7日能耗  -->
+                <GroupBox Header="7日能耗 - 耗电量">
+                    <lvc:CartesianChart Margin="5,10">
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries
+                                Title="耗电量"
+                                PointGeometrySize="0"
+                                Stroke="#1e90ff"
+                                StrokeThickness="1"
+                                Values="12,23,11,22,15,21,19">
+                                <lvc:LineSeries.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0" Color="#441e90ff" />
+                                        <GradientStop Offset="1" Color="Transparent" />
+                                    </LinearGradientBrush>
+                                </lvc:LineSeries.Fill>
+                            </lvc:LineSeries>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="1日,2日,3日,4日,5日,6日,7日">
+                                <lvc:Axis.Separator>
+                                    <!--  x轴 每一个点之间的跳跃值，如果是1，就正常显示1234567，如果是2就隔一个显示。StrokeThickness是实现该值对应的厚度  -->
+                                    <lvc:Separator Step="1" StrokeThickness="0" />
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis ShowLabels="False">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator StrokeThickness="0" />
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </GroupBox>
+            </UniformGrid>
+        </Grid>
+
+
+
+
     </Grid>
 </UserControl>

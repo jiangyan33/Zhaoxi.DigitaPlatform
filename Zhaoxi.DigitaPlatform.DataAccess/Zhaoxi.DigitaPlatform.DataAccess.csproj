@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="System.Data.SQLite" Version="1.0.117.0" />
+	  <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.0" />
+	  <PackageReference Include="SqlSugarCoreNoDrive" Version="5.1.4.80" />
 	</ItemGroup>
 </Project>

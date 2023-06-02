@@ -50,11 +50,11 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
                 {
                     UserName = User.UserName,
                     Password = User.Password,
-                    RealName = User.RealName,
-                    UserType = int.Parse(data.Rows[0]["user_type"].ToString()),
-                    Gender = int.Parse(data.Rows[0]["gender"].ToString()),
-                    Department = data.Rows[0]["department"]?.ToString(),
-                    PhoneNumber = data.Rows[0]["phone_num"]?.ToString()
+                    RealName = data.RealName,
+                    UserType = int.Parse(data.UserType.ToString()),
+                    Gender = data.Gender,
+                    Department = data.Department,
+                    PhoneNumber = data.PhoneNum
                 };
 
                 (obj as Window).DialogResult = true;

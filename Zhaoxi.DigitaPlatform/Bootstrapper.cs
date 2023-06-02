@@ -39,6 +39,8 @@ namespace Zhaoxi.DigitaPlatform
 
 
             // 实例化单例服务
+            containerRegistry.RegisterSingleton<DBClient>();
+
             containerRegistry.RegisterSingleton<LocalDataAccess>();
         }
     }
