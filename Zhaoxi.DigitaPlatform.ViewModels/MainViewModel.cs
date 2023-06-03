@@ -1,18 +1,32 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Unity;
 using Zhaoxi.DigitaPlatform.Models;
+
+
 
 namespace Zhaoxi.DigitaPlatform.ViewModels
 {
     public class MainViewModel : BindableBase
     {
+        private UserModel _user;
+
+        public UserModel User
+        {
+            get { return _user; }
+            set { SetProperty(ref _user, value); }
+        }
+
+
         private object _viewContent;
 
         public object ViewContent
@@ -23,11 +37,25 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
 
         public List<MenuModel> Menus { get; set; }
 
-        public ICommand SwitchPageCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
-        public MainViewModel()
+        public ICommand LoadedCommand { get; set; }
+
+        private readonly IRegionManager _regionManager;
+
+        public ICommand NavChangedCommand { get; set; }
+
+        private void DoNavChanged(string obj)
+        {
+            _regionManager.RequestNavigate("MainRegion", obj);
+        }
+
+
+        public MainViewModel(IRegionManager regionManager)
         {
             Menus = new List<MenuModel>();
+
+            _regionManager = regionManager;
 
             Menus.Add(new MenuModel()
             {
@@ -62,36 +90,23 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
                 TargetView = "SettingsPage"
             });
 
-            SwitchPageCommand = new DelegateCommand<object>(ShowPage);
+            LogoutCommand = new DelegateCommand<object>(Logout);
 
-            ShowPage(Menus[0]);
+            LoadedCommand = new DelegateCommand(Loaded);
+
+            NavChangedCommand = new DelegateCommand<string>(DoNavChanged);
         }
 
-        private void ShowPage(object obj)
+        private void Loaded()
         {
-            var model = obj as MenuModel;
+            User = Common.CommonResource.User;
 
-            if (model != null)
-            {
-                if (ViewContent == null)
-                {
-                    CreateView(model.TargetView);
-                }
-                else
-                {
-                    if (ViewContent.GetType().Name != model.TargetView)
-                    {
-                        CreateView(model.TargetView);
-                    }
-                }
-            }
+            DoNavChanged(Menus[0].TargetView);
         }
 
-        private void CreateView(string viewName)
+        private void Logout(object obj)
         {
-            var type = Assembly.Load("Zhaoxi.DigitaPlatform.Views").GetType("Zhaoxi.DigitaPlatform.Views.Pages." + viewName);
 
-            ViewContent = Activator.CreateInstance(type);
         }
     }
 }

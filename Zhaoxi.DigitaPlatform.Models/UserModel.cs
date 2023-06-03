@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Mvvm;
 
 namespace Zhaoxi.DigitaPlatform.Models
 {
@@ -12,6 +8,7 @@ namespace Zhaoxi.DigitaPlatform.Models
         public string Password { get; set; } = "123456";
 
         public string RealName { get; set; }
+
         public string EmployNum { get; set; }
         public string PhoneNumber { get; set; }
 
@@ -20,5 +17,6 @@ namespace Zhaoxi.DigitaPlatform.Models
         public int Gender { get; set; }
 
         public string Department { get; set; }
+
     }
 }

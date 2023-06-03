@@ -5,6 +5,7 @@ using System.Windows;
 using Zhaoxi.DigitaPlatform.DataAccess;
 using Zhaoxi.DigitaPlatform.ViewModels;
 using Zhaoxi.DigitaPlatform.Views;
+using Zhaoxi.DigitaPlatform.Views.Pages;
 
 namespace Zhaoxi.DigitaPlatform
 {
@@ -37,11 +38,18 @@ namespace Zhaoxi.DigitaPlatform
 
             ViewModelLocationProvider.Register<MainView, MainViewModel>();
 
+            containerRegistry.RegisterForNavigation<AlarmPage>();
+            containerRegistry.RegisterForNavigation<MonitorPage>();
+            containerRegistry.RegisterForNavigation<ReportPage>();
+            containerRegistry.RegisterForNavigation<SettingsPage>();
+            containerRegistry.RegisterForNavigation<TrendPage>();
 
             // 实例化单例服务
             containerRegistry.RegisterSingleton<DBClient>();
 
             containerRegistry.RegisterSingleton<LocalDataAccess>();
+
+
         }
     }
 }

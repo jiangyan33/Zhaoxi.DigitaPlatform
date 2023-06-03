@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vm="clr-namespace:Zhaoxi.DigitaPlatform.ViewModels;assembly=Zhaoxi.DigitaPlatform.ViewModels"
-    Name="loginWindow"
     Title="系统登录"
     Width="300"
     Height="520"
@@ -260,7 +259,7 @@
                 Grid.Row="6"
                 Height="35"
                 Command="{Binding LoginCommand}"
-                CommandParameter="{Binding ElementName=loginWindow}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                 Content="登录"
                 Style="{StaticResource NormalButtonStyle}" />
 
