@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:Zhaoxi.DigitaPlatform.Views.Pages"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:zxc="clr-namespace:Zhaoxi.DigitaPlatform.Components;assembly=Zhaoxi.DigitaPlatform.Components"
     d:DesignHeight="750"
     d:DesignWidth="1400"
     mc:Ignorable="d">
@@ -748,7 +749,7 @@
                 <RowDefinition Height="200" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
+            <!--  用户信息  -->
             <Border
                 Margin="0,0,0,5"
                 Background="#996364f8"
@@ -759,7 +760,7 @@
                         <RowDefinition Height="44" />
                     </Grid.RowDefinitions>
 
-                    <!--  用户信息  -->
+
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60" />
@@ -807,6 +808,29 @@
                     </Grid>
                 </Grid>
             </Border>
+
+            <!--  管道信息  -->
+            <GroupBox Grid.Row="1" Header="管道信息">
+                <UniformGrid Margin="10,30,10,10" Rows="1">
+                    <zxc:Meter
+                        Width="90"
+                        Height="90"
+                        Foreground="#80E0EB"
+                        Header="母管压力"
+                        Unit="MPa"
+                        Value="35.1" />
+
+                    <zxc:Meter
+                        Width="90"
+                        Height="90"
+                        Foreground="Orange"
+                        Header="瞬时流量"
+                        Unit="Nm³/min"
+                        Value="40.62" />
+                </UniformGrid>
+            </GroupBox>
+
+
         </Grid>
     </Grid>
 </UserControl>
