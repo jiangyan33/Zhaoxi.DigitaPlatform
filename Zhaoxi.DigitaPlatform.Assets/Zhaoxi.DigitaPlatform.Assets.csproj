@@ -7,6 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Fonts\digital_display.ttf" />
 		<None Remove="Fonts\iconfont.ttf" />
 		<None Remove="Images\108x108.ico" />
 		<None Remove="Images\Logo.png" />
@@ -15,6 +16,7 @@
 		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
+		<Resource Include="Fonts\digital_display.ttf" />
 		<Resource Include="Fonts\iconfont.ttf" />
 		<Resource Include="Images\Logo.png" />
 	</ItemGroup>

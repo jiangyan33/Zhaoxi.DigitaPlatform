@@ -3,16 +3,8 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
-using Unity;
 using Zhaoxi.DigitaPlatform.Models;
-
-
 
 namespace Zhaoxi.DigitaPlatform.ViewModels
 {
@@ -36,6 +28,10 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
         }
 
         public List<MenuModel> Menus { get; set; }
+
+        public List<RankingItemModel> RankingList { get; set; }
+
+        public List<MonitorWarningModel> WarningList { get; set; }
 
         public ICommand LogoutCommand { get; set; }
 
@@ -89,6 +85,32 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
                 MenuIcon = "\ue60f",
                 TargetView = "SettingsPage"
             });
+
+            var quality = new List<string> { "车间-1", "车间-2", "车间-3", "车间-4", "车间-5" };
+
+            RankingList = new List<RankingItemModel>();
+
+            var random = new Random();
+
+            foreach (var item in quality)
+            {
+                RankingList.Add(new RankingItemModel
+                {
+                    Header = item,
+                    PlanValue = random.Next(100, 200),
+                    FinishedValue = random.Next(10, 150)
+                });
+            }
+
+            WarningList = new List<MonitorWarningModel>();
+
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:保养到期", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:故障", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:排期温度过高", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:排期温度过高", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:排期温度过高", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:排期温度过高", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
+            WarningList.Add(new MonitorWarningModel { Message = "朝夕教育PLT-01:排期温度过高", DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") });
 
             LogoutCommand = new DelegateCommand<object>(Logout);
 
