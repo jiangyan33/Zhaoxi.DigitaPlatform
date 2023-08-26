@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Zhaoxi.DigitaPlatform.Components\Zhaoxi.DigitaPlatform.Components.csproj" />
 	  <ProjectReference Include="..\Zhaoxi.DigitaPlatform.Models\Zhaoxi.DigitaPlatform.Models.csproj" />
 	</ItemGroup>
 

@@ -1,15 +1,24 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
+using Zhaoxi.DigitaPlatform.Common;
+using Zhaoxi.DigitaPlatform.DataAccess;
 using Zhaoxi.DigitaPlatform.Models;
 
 namespace Zhaoxi.DigitaPlatform.ViewModels
 {
     public class MainViewModel : BindableBase
     {
+
+        private readonly IDialogService _dialogService;
+
         private UserModel _user;
 
         public UserModel User
@@ -18,6 +27,7 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
             set { SetProperty(ref _user, value); }
         }
 
+        private readonly LocalDataAccess _localDataAccess;
 
         private object _viewContent;
 
@@ -29,11 +39,21 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
 
         public List<MenuModel> Menus { get; set; }
 
+        private List<DeviceItemModel> _deviceList;
+
+        public List<DeviceItemModel> DeviceList
+        {
+            get { return _deviceList; }
+            set { SetProperty(ref _deviceList, value); }
+        }
+
         public List<RankingItemModel> RankingList { get; set; }
 
         public List<MonitorWarningModel> WarningList { get; set; }
 
         public ICommand LogoutCommand { get; set; }
+
+        public ICommand ComponentsConfigCommand { get; set; }
 
         public ICommand LoadedCommand { get; set; }
 
@@ -46,11 +66,12 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
             _regionManager.RequestNavigate("MainRegion", obj);
         }
 
-
-        public MainViewModel(IRegionManager regionManager)
+        public MainViewModel(IRegionManager regionManager, IDialogService dialogService, LocalDataAccess localDataAccess)
         {
             Menus = new List<MenuModel>();
 
+            _localDataAccess = localDataAccess;
+            _dialogService = dialogService;
             _regionManager = regionManager;
 
             Menus.Add(new MenuModel()
@@ -117,6 +138,10 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
             LoadedCommand = new DelegateCommand(Loaded);
 
             NavChangedCommand = new DelegateCommand<string>(DoNavChanged);
+
+            ComponentsConfigCommand = new DelegateCommand(ComponentsConfig);
+
+            CommonentInit();
         }
 
         private void Loaded()
@@ -126,9 +151,49 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
             DoNavChanged(Menus[0].TargetView);
         }
 
+        private void ComponentsConfig()
+        {
+            // 提示权限不足，直接返回
+            if (CommonResource.User.UserType <= 0) return;
+
+            _dialogService.ShowDialog("ComponentConfigView", new DialogParameters(), (dialogResult) =>
+            {
+                if (dialogResult.Result != ButtonResult.OK) return;
+                // 如果保持需要刷新UI
+                Debug.WriteLine("刷新组态UI");
+                CommonentInit();
+            });
+        }
+
         private void Logout(object obj)
         {
 
+        }
+
+        /// <summary>
+        /// 初始化组件集合
+        /// </summary>
+        private void CommonentInit()
+        {
+            var tmpList = new List<DeviceItemModel>();
+
+            var devicesList = _localDataAccess.GetDevices();
+
+            if (devicesList.Count > 0)
+            {
+                tmpList.AddRange(devicesList.Select(data => new DeviceItemModel
+                {
+                    DeviceNum = DateTime.Now.ToString("yyyyMMddHHmmss"),
+                    DeviceType = data.DeviceTypeName,
+                    Width = Convert.ToDouble(data.W),
+                    Height = Convert.ToDouble(data.H),
+                    X = Convert.ToDouble(data.X),
+                    Y = Convert.ToDouble(data.Y),
+                    Z = Convert.ToInt32(data.Z),
+                }).ToList());
+            }
+
+            DeviceList = tmpList;
         }
     }
 }

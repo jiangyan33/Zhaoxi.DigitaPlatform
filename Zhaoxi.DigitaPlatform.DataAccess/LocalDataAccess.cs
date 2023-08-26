@@ -26,5 +26,41 @@ namespace Zhaoxi.DigitaPlatform.DataAccess
             }
             return list.First();
         }
+
+        public List<DevicesEntity> GetDevices()
+        {
+            var list = _client.GetInstance.Queryable<DevicesEntity>().ToList();
+
+            return list;
+        }
+
+        public int SaveDevice(List<DevicesEntity> devices)
+        {
+            try
+            {
+                _client.GetInstance.BeginTran();
+
+                // 先清空所有的组件，再从新保持
+
+                _client.GetInstance.Deleteable<DevicesEntity>().ExecuteCommand();
+
+                int ret = 0;
+
+                if (devices.Count > 0)
+                {
+                    ret = _client.GetInstance.Insertable(devices).ExecuteCommand();
+                }
+
+                _client.GetInstance.CommitTran();
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                _client.GetInstance.RollbackTran();
+
+                throw ex;
+            }
+        }
     }
 }

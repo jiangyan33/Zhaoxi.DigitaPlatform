@@ -14,81 +14,92 @@
     d:DesignWidth="1400"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converter:UserTypeValueConverter x:Key="UserTypeValueConverter" />
-        <Style TargetType="GroupBox">
-            <Setter Property="Margin" Value="0,5" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="GroupBox">
-                        <Grid>
-                            <Border
-                                Background="#55FFFFFF"
-                                BorderBrush="#080fc6f8"
-                                BorderThickness="1"
-                                CornerRadius="6" />
-                            <ContentPresenter />
 
-                            <StackPanel
-                                Margin="8"
-                                VerticalAlignment="Top"
-                                Orientation="Horizontal">
-                                <Border
-                                    Width="3"
-                                    Height="10"
-                                    VerticalAlignment="Center"
-                                    Background="#16a1ff"
-                                    CornerRadius="2" />
-                                <TextBlock
-                                    Margin="5,0"
-                                    FontSize="11"
-                                    FontWeight="Normal"
-                                    Foreground="#888"
-                                    Text="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                                <Border
-                                    Width="3"
-                                    Height="8"
-                                    VerticalAlignment="Center"
-                                    Background="#AA16a1ff"
-                                    CornerRadius="2" />
-                                <Border
-                                    Width="3"
-                                    Height="8"
-                                    Margin="3,0"
-                                    VerticalAlignment="Center"
-                                    Background="#7716a1ff"
-                                    CornerRadius="2" />
-                                <Border
-                                    Width="3"
-                                    Height="8"
-                                    VerticalAlignment="Center"
-                                    Background="#4416a1ff"
-                                    CornerRadius="2" />
-                                <Border
-                                    Width="3"
-                                    Height="8"
-                                    Margin="3,0"
-                                    VerticalAlignment="Center"
-                                    Background="#1116a1ff"
-                                    CornerRadius="2" />
-                            </StackPanel>
-                            <Path
-                                Margin="1"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Data="M0,10 0,6A6 6 0 0 1 6 0L 10 0"
-                                Stroke="#b4fee7" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary>
+                    <converter:UserTypeValueConverter x:Key="UserTypeValueConverter" />
+                    <converter:DeviceItemConverter x:Key="DeviceItemConverter" />
+                    <Style TargetType="GroupBox">
+                        <Setter Property="Margin" Value="0,5" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="GroupBox">
+                                    <Grid>
+                                        <Border
+                                            Background="#55FFFFFF"
+                                            BorderBrush="#080fc6f8"
+                                            BorderThickness="1"
+                                            CornerRadius="6" />
+                                        <ContentPresenter />
 
-                            <Path
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Data="M0,10 6,10A6 6 0 0 0 10 4L 10 0"
-                                Stroke="#b4fee7" />
+                                        <StackPanel
+                                            Margin="8"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                            <Border
+                                                Width="3"
+                                                Height="10"
+                                                VerticalAlignment="Center"
+                                                Background="#16a1ff"
+                                                CornerRadius="2" />
+                                            <TextBlock
+                                                Margin="5,0"
+                                                FontSize="11"
+                                                FontWeight="Normal"
+                                                Foreground="#888"
+                                                Text="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                            <Border
+                                                Width="3"
+                                                Height="8"
+                                                VerticalAlignment="Center"
+                                                Background="#AA16a1ff"
+                                                CornerRadius="2" />
+                                            <Border
+                                                Width="3"
+                                                Height="8"
+                                                Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                Background="#7716a1ff"
+                                                CornerRadius="2" />
+                                            <Border
+                                                Width="3"
+                                                Height="8"
+                                                VerticalAlignment="Center"
+                                                Background="#4416a1ff"
+                                                CornerRadius="2" />
+                                            <Border
+                                                Width="3"
+                                                Height="8"
+                                                Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                Background="#1116a1ff"
+                                                CornerRadius="2" />
+                                        </StackPanel>
+                                        <Path
+                                            Margin="1"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Data="M0,10 0,6A6 6 0 0 1 6 0L 10 0"
+                                            Stroke="#b4fee7" />
 
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                                        <Path
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Data="M0,10 6,10A6 6 0 0 0 10 4L 10 0"
+                                            Stroke="#b4fee7" />
+
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
     </UserControl.Resources>
 
     <UserControl.Triggers>
@@ -503,6 +514,32 @@
                 <RowDefinition Height="0.37*" />
             </Grid.RowDefinitions>
 
+            <!--  组件显示区域  -->
+            <ItemsControl ItemsSource="{Binding DeviceList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}" />
+                        <Setter Property="Canvas.Top" Value="{Binding Y}" />
+                        <Setter Property="Panel.ZIndex" Value="{Binding Z}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl
+                            Width="{Binding Width}"
+                            Height="{Binding Height}"
+                            Content="{Binding DeviceType, Converter={StaticResource DeviceItemConverter}}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
             <GroupBox
                 Grid.Row="1"
                 Margin="10,5"
@@ -832,6 +869,32 @@
                             </TextBlock>
                         </StackPanel>
                     </Grid>
+
+                    <Button
+                        Grid.Row="1"
+                        Width="150"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Command="{Binding ComponentsConfigCommand}"
+                        Style="{StaticResource NormalButtonStyle}">
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource Iconfont}"
+                                Text="&#xe611;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Text="组态编辑" />
+                        </Grid>
+                    </Button>
                 </Grid>
             </Border>
 

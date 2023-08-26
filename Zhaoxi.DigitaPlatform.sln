@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhaoxi.DigitaPlatform.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhaoxi.DigitaPlatform.Components", "Zhaoxi.DigitaPlatform.Components\Zhaoxi.DigitaPlatform.Components.csproj", "{73C63F95-7EA2-4984-9F36-A54A969A4BC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhaoxi.DigitaPlatform.Views", "Zhaoxi.DigitaPlatform.Views\Zhaoxi.DigitaPlatform.Views.csproj", "{FA50B704-71AD-425A-861D-46F0FA7B800C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhaoxi.DigitaPlatform.Views", "Zhaoxi.DigitaPlatform.Views\Zhaoxi.DigitaPlatform.Views.csproj", "{FA50B704-71AD-425A-861D-46F0FA7B800C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{7B288CAA-BC37-4BAC-BA6B-E5864B0BF8DA}"
 	ProjectSection(SolutionItems) = preProject

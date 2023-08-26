@@ -38,6 +38,8 @@ namespace Zhaoxi.DigitaPlatform
 
             ViewModelLocationProvider.Register<MainView, MainViewModel>();
 
+            ViewModelLocationProvider.Register<ComponentConfigView, ComponentConfigViewModel>();
+
             containerRegistry.RegisterForNavigation<AlarmPage>();
             containerRegistry.RegisterForNavigation<MonitorPage>();
             containerRegistry.RegisterForNavigation<ReportPage>();
@@ -49,7 +51,9 @@ namespace Zhaoxi.DigitaPlatform
 
             containerRegistry.RegisterSingleton<LocalDataAccess>();
 
+            containerRegistry.RegisterDialogWindow<DialogWindow>();
 
+            containerRegistry.RegisterDialog<ComponentConfigView>();
         }
     }
 }
