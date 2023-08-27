@@ -5,21 +5,79 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Zhaoxi.DigitaPlatform.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Background="Orange">
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="hello" />
 
-        <Button
-            Width="60"
-            Height="30"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Click="Button_Click"
-            Content="删除" />
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid Margin="5" Background="Orange">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="hello" />
+
+            <Button
+                Width="60"
+                Height="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="Button_Click"
+                Content="删除" />
+        </Grid>
+
+        <Grid Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=root}">
+            <Rectangle
+                RadiusX="5"
+                RadiusY="5"
+                Stroke="#AAA"
+                StrokeDashArray="3,3" />
+            <!--  右下角  -->
+            <Ellipse
+                Width="10"
+                Height="10"
+                Margin="-5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="SizeNWSE"
+                Fill="White"
+                MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"
+                MouseLeftButtonUp="Ellipse_MouseLeftButtonUp"
+                MouseMove="Ellipse_MouseMove"
+                Stroke="#AAA" />
+            <!--  右边  -->
+            <Ellipse
+                Width="10"
+                Height="10"
+                Margin="-5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Cursor="SizeWE"
+                Fill="White"
+                MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"
+                MouseLeftButtonUp="Ellipse_MouseLeftButtonUp"
+                MouseMove="Ellipse_MouseMove"
+                Stroke="#AAA" />
+            <!--  下方  -->
+            <Ellipse
+                Width="10"
+                Height="10"
+                Margin="-5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Cursor="SizeNS"
+                Fill="White"
+                MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"
+                MouseLeftButtonUp="Ellipse_MouseLeftButtonUp"
+                MouseMove="Ellipse_MouseMove"
+                Stroke="#AAA" />
+        </Grid>
     </Grid>
+
+
 </local:ComponentBase>

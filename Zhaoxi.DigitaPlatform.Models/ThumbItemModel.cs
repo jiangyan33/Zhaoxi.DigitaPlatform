@@ -6,6 +6,8 @@ namespace Zhaoxi.DigitaPlatform.Models
 {
     public class ThumbItemModel
     {
+        public string Header { get; set; }
+
         public string Icon { get; set; }
 
         public string TargetType { get; set; }

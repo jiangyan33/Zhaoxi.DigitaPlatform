@@ -25,9 +25,9 @@
 
     <prism:Dialog.WindowStyle>
         <Style TargetType="Window">
-            <Setter Property="Width" Value="1800" />
+            <Setter Property="Width" Value="1200" />
             <Setter Property="Title" Value="{Binding Title}" />
-            <Setter Property="Height" Value="1200" />
+            <Setter Property="Height" Value="800" />
         </Style>
     </prism:Dialog.WindowStyle>
     <Grid>
@@ -204,6 +204,11 @@
                                                         CommandParameter="{Binding ElementName=bor}"
                                                         MouseAction="LeftClick" />
                                                 </Border.InputBindings>
+                                                <Border Margin="6" ToolTip="{Binding Header}">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding Icon}" />
+                                                    </Border.Background>
+                                                </Border>
                                             </Border>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -228,7 +233,13 @@
 
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas />
+                        <Canvas Background="Transparent">
+                            <behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+                                    <behaviors:InvokeCommandAction Command="{Binding DeviceSelectedCommand}" />
+                                </behaviors:EventTrigger>
+                            </behaviors:Interaction.Triggers>
+                        </Canvas>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
@@ -248,7 +259,10 @@
                             Content="{Binding DeviceType, Converter={StaticResource DeviceItemConverter}}">
                             <behaviors:Interaction.Triggers>
                                 <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+                                    <!--  处理拖动动作  -->
                                     <behaviors:CallMethodAction MethodName="OnMouseLeftButtonDown" TargetObject="{Binding}" />
+                                    <!--  处理选中效果  -->
+                                    <behaviors:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.DeviceSelectedCommand}" CommandParameter="{Binding}" />
                                 </behaviors:EventTrigger>
                                 <behaviors:EventTrigger EventName="MouseMove">
                                     <behaviors:CallMethodAction MethodName="OnMouseMove" TargetObject="{Binding}" />
@@ -272,9 +286,6 @@
                 <Grid Margin="10,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -299,8 +310,71 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
-                        Foreground="White"
-                        Text="参数配置 - 组件A" />
+                        Foreground="White">
+                        <Run Text="参数配置 - " />
+                        <Run Text="{Binding CurrentDevice.Header}" />
+                    </TextBlock>
+
+                    <!--  设备的通信参数、点位信息、控制信息  -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Margin="5,10"
+                                FontWeight="Bold"
+                                Foreground="#888"
+                                Text="通信参数" />
+
+                            <Button
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource WindowControlButtonStyle}"
+                                ToolTip="添加参数">
+                                <Path Data="M0 5 10 5M5 0 5 10" Stroke="#555" />
+                            </Button>
+
+                            <ItemsControl Grid.Row="1" ItemsSource="{Binding}" />
+
+
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="5,10"
+                                FontWeight="Bold"
+                                Foreground="#888"
+                                Text="点位配置" />
+
+                            <StackPanel
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource WindowControlButtonStyle}"
+                                    ToolTip="添加点位信息">
+                                    <Path Data="M0 5 10 5M5 0 5 10" Stroke="#555" />
+                                </Button>
+                                <Button
+                                    Width="24"
+                                    Height="24"
+                                    Content="&#xe675;"
+                                    FontFamily="{StaticResource Iconfont}"
+                                    Foreground="#555"
+                                    Style="{StaticResource WindowControlButtonStyle}"
+                                    ToolTip="导入点位信息" />
+                            </StackPanel>
+
+                            <ItemsControl Grid.Row="3" ItemsSource="{Binding}" />
+                        </Grid>
+                    </ScrollViewer>
 
                     <UniformGrid
                         Grid.Row="100"

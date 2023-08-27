@@ -22,6 +22,12 @@ namespace Zhaoxi.DigitaPlatform.Common.Converter
 
             instance.SetBinding(ComponentBase.DeleteParameterProperty, new Binding());
 
+            instance.SetBinding(ComponentBase.IsSelectedProperty, new Binding { Path = new PropertyPath("IsSelected") });
+
+            instance.SetBinding(ComponentBase.ShowWidthProperty, new Binding { Path = new PropertyPath("Width"), Mode = BindingMode.TwoWay });
+
+            instance.SetBinding(ComponentBase.ShowHeightProperty, new Binding { Path = new PropertyPath("Height"), Mode = BindingMode.TwoWay });
+
             return instance;
         }
 

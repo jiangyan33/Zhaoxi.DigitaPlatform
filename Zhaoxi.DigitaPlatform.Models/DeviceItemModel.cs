@@ -92,7 +92,7 @@ namespace Zhaoxi.DigitaPlatform.Models
 
             Debug.WriteLine("开始移动");
 
-            //args.Handled = true;
+            args.Handled = true;
         }
 
         public void OnMouseMove(object sender, MouseEventArgs args)
@@ -135,6 +135,10 @@ namespace Zhaoxi.DigitaPlatform.Models
 
             return GetParent(obj);
         }
+
+        #endregion
+
+        #region 选中
 
         #endregion
     }

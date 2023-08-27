@@ -18,6 +18,17 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
     {
         public string Title => "设备组态编辑";
 
+        private DeviceItemModel _currentDevice;
+
+        /// <summary>
+        /// 当前选中的设备信息
+        /// </summary>
+        public DeviceItemModel CurrentDevice
+        {
+            get { return _currentDevice; }
+            set { SetProperty(ref _currentDevice, value); }
+        }
+
         private ObservableCollection<DeviceItemModel> _deviceList;
 
         /// <summary>
@@ -54,80 +65,30 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
         {
             _localDataAccess = localDataAccess;
 
-            ThumbList.Add(new ThumbModel
-            {
-                Header = "设备",
-                Children = new List<ThumbItemModel>
-                {
-                    new ThumbItemModel{
-                        TargetType="AirCompressor",
-                        Width=120,
-                        Height=90
-                    },
-                    new ThumbItemModel{
-                        TargetType="Hello",
-                        Width=10,
-                        Height=200
-                    },
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel()
-                }
-            });
+            var thumbList = _localDataAccess.GetThumbs();
 
-            ThumbList.Add(new ThumbModel
+            if (thumbList.Count > 0)
             {
-                Header = "数字仪表",
-                Children = new List<ThumbItemModel>
+                ThumbList = thumbList.GroupBy(x => x.Category).Select(x =>
                 {
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel()
-                }
-            });
+                    var model = new ThumbModel
+                    {
+                        Header = x.Key
+                    };
 
-            ThumbList.Add(new ThumbModel
-            {
-                Header = "管道",
-                Children = new List<ThumbItemModel>
-                {
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                }
-            });
+                    model.Children = x.Select(item => new ThumbItemModel
+                    {
+                        TargetType = item.TargetType,
+                        Width = item.W,
+                        Height = item.H,
+                        Header = item.Header,
+                        Icon = "pack://application:,,,/Zhaoxi.DigitaPlatform.Assets;component/Images/Thumbs/" + item.Icon,
+                    }).ToList();
 
-            ThumbList.Add(new ThumbModel
-            {
-                Header = "控制开关",
-                Children = new List<ThumbItemModel>
-                {
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel()
-                }
-            });
+                    return model;
 
-            ThumbList.Add(new ThumbModel
-            {
-                Header = "其他组件",
-                Children = new List<ThumbItemModel>
-                {
-                    new ThumbItemModel(),
-                    new ThumbItemModel(),
-                    new ThumbItemModel()
-                }
-            });
-
+                }).ToList();
+            }
             CommonentInit();
         }
 
@@ -135,6 +96,8 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
         public ICommand CancelCommand => new DelegateCommand(Cancel);
         public ICommand ConfirmCommand => new DelegateCommand(Confirm);
         public ICommand ItemDropCommand => new DelegateCommand<object>(ItemDrop);
+
+        public ICommand DeviceSelectedCommand => new DelegateCommand<object>(DeviceSelected);
 
         #endregion
 
@@ -188,6 +151,25 @@ namespace Zhaoxi.DigitaPlatform.ViewModels
             });
 
             Debug.WriteLine(data.TargetType);
+        }
+
+        private void DeviceSelected(object obj)
+        {
+            var model = obj as DeviceItemModel;
+
+            // 如果当前已经存在选中的内容，取消选中
+            if (CurrentDevice != null)
+            {
+                CurrentDevice.IsSelected = false;
+            }
+
+            // 如果点击的是非Canvas的空白区域,将当前选中的内容设置为True
+            if (model != null)
+            {
+                model.IsSelected = true;
+            }
+
+            CurrentDevice = model;
         }
 
         /// <summary>

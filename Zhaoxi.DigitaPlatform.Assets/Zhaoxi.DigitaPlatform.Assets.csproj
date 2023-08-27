@@ -11,6 +11,8 @@
 		<None Remove="Fonts\iconfont.ttf" />
 		<None Remove="Images\108x108.ico" />
 		<None Remove="Images\Logo.png" />
+		<None Remove="Images\Thumbs\air_compressor.png" />
+		<None Remove="Images\Thumbs\icon.png" />
 	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DebugType>none</DebugType>
@@ -19,6 +21,8 @@
 		<Resource Include="Fonts\digital_display.ttf" />
 		<Resource Include="Fonts\iconfont.ttf" />
 		<Resource Include="Images\Logo.png" />
+		<Resource Include="Images\Thumbs\air_compressor.png" />
+		<Resource Include="Images\Thumbs\icon.png" />
 	</ItemGroup>
 
 </Project>

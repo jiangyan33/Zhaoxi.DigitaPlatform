@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Zhaoxi.DigitaPlatform.DataAccess.Entities;
 
@@ -61,6 +60,13 @@ namespace Zhaoxi.DigitaPlatform.DataAccess
 
                 throw ex;
             }
+        }
+
+        public List<ThumbsEntity> GetThumbs()
+        {
+            var list = _client.GetInstance.Queryable<ThumbsEntity>().ToList();
+
+            return list;
         }
     }
 }
